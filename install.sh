@@ -1,4 +1,4 @@
-#!/usr/bin/env bash                                                                                                                                                                                     
+#!/usr/bin/env bash                                     
   # Dotfiles install script — runs automatically on Codespace creation
   # Copies hook scripts to ~/.claude/hooks/ and configures Claude Code settings
   #
@@ -67,12 +67,6 @@
       # Create fresh settings with just the hooks
       jq -n --argjson hooks "$HOOKS_JSON" '{ hooks: $hooks }' > "$SETTINGS_FILE"
       echo "[dotfiles] Created settings.json with notification hooks"
-  fi
-
-  # Remind about NTFY_TOPIC
-  if [ -z "${NTFY_TOPIC:-}" ]; then
-      echo "[dotfiles] WARNING: NTFY_TOPIC not set. Add it as a Codespace secret for notifications to work."
-      echo "[dotfiles] Go to: https://github.com/settings/codespaces → Secrets → New secret"
   fi
 
   echo "[dotfiles] Done."
